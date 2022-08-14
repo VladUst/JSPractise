@@ -98,4 +98,48 @@ window.addEventListener('DOMContentLoaded', function() {
         const moreBtn = tab.querySelector('.description-btn');
         moreBtn.addEventListener('click', showModal)
     })
+
+
+    let slideIndex = 1;
+    const slider = document.body.querySelector('.slider'),
+          slides = document.body.querySelectorAll('.slider-item'),
+          dotWrap = document.body.querySelector('.slider-dots'),
+          dots = document.body.querySelectorAll('.dot'),
+          prev = slider.querySelector('.prev'),
+          next = slider.querySelector('.next');
+    showSlides(slideIndex);
+
+    function showSlides(number){
+        if(number < 1){
+            slideIndex = slides.length;
+        }
+        if(number > slides.length){
+            slideIndex = 1;
+        }
+        slides.forEach(item => item.style.display = 'none');
+        dots.forEach(item => item.classList.remove('dot-active'));
+        slides[slideIndex - 1].style.display = 'block';
+        dots[slideIndex - 1].classList.add('dot-active'); 
+    }
+
+    function shiftSlide(shift){
+        showSlides(slideIndex += shift);
+    }
+    function currentSlide(current){
+        showSlides(slideIndex = current);
+    }
+
+    prev.addEventListener('click', function(){
+        shiftSlide(-1);
+    })
+    next.addEventListener('click', function(){
+        shiftSlide(1);
+    });
+    dotWrap.addEventListener('click', function(event){
+        for(let i=1; i <= dots.length; ++i){
+            if(event.target === dots[i-1]){
+                currentSlide(i);
+            }
+        }
+    });
 })
