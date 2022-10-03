@@ -98,4 +98,85 @@ window.addEventListener('DOMContentLoaded', function() {
         const moreBtn = tab.querySelector('.description-btn');
         moreBtn.addEventListener('click', showModal)
     })
+
+
+    let slideIndex = 1;
+    const slider = document.body.querySelector('.slider'),
+          slides = document.body.querySelectorAll('.slider-item'),
+          dotWrap = document.body.querySelector('.slider-dots'),
+          dots = document.body.querySelectorAll('.dot'),
+          prev = slider.querySelector('.prev'),
+          next = slider.querySelector('.next');
+    showSlides(slideIndex);
+
+    function showSlides(number){
+        if(number < 1){
+            slideIndex = slides.length;
+        }
+        if(number > slides.length){
+            slideIndex = 1;
+        }
+        slides.forEach(item => item.style.display = 'none');
+        dots.forEach(item => item.classList.remove('dot-active'));
+        slides[slideIndex - 1].style.display = 'block';
+        dots[slideIndex - 1].classList.add('dot-active'); 
+    }
+
+    function shiftSlide(shift){
+        showSlides(slideIndex += shift);
+    }
+    function currentSlide(current){
+        showSlides(slideIndex = current);
+    }
+
+    prev.addEventListener('click', function(){
+        shiftSlide(-1);
+    })
+    next.addEventListener('click', function(){
+        shiftSlide(1);
+    });
+    dotWrap.addEventListener('click', function(event){
+        for(let i=1; i <= dots.length; ++i){
+            if(event.target === dots[i-1]){
+                currentSlide(i);
+            }
+        }
+    });
+
+    
+    const personsInput = document.body.querySelectorAll('.counter-block-input')[0],
+          daysInput = document.body.querySelectorAll('.counter-block-input')[1],
+          totalSum = document.body.querySelector('#total'),
+          selector = document.body.querySelector('#select');
+    let persons = 0, days = 0, total = 0;
+    totalSum.textContent = total;
+    
+    personsInput.addEventListener('change', function(){
+        persons = +this.value;
+        total = persons*500 + days*1000;
+        if(daysInput.value == '' || personsInput.value == ''){
+            totalSum.textContent = 0;
+        } else {
+            totalSum.textContent = total;
+        }
+    });
+
+    daysInput.addEventListener('change', function(){
+        days = +this.value;
+        total = persons*500 + days*1000;
+        if(personsInput.value == '' || daysInput.value == ''){
+            totalSum.textContent = 0;
+        } else {
+            totalSum.textContent = total;
+        }
+    });
+
+    selector.addEventListener('change', function(){
+        if(daysInput.value == '' || personsInput.value == ''){
+            totalSum.value = 0;
+        } else {
+            let saveTotal = total;
+            totalSum.textContent = saveTotal * this.options[this.selectedIndex].value;
+        }
+    });
 })
