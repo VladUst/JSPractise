@@ -21,6 +21,20 @@ const selectionSort = arr => {
   }
   return arr;
 }
+
+const insertionSort = arr => {
+  for(let wall = 1; wall < arr.length; wall++){
+    let curUnsorted = arr[wall];
+    let i = 0;
+    for(i = wall; i > 0 && arr[i-1] > curUnsorted; i--) {
+      arr[i] = arr[i - 1];
+    }
+    arr[i] = curUnsorted;
+  }
+  return arr;
+}
+
 const arr = [23, 41, 25, 54, 18, 14];
+console.log(insertionSort(arr));
 console.log(bubbleSort(arr));
 console.log(selectionSort(arr));
