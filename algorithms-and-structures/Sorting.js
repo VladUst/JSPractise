@@ -50,7 +50,35 @@ const shellSort = arr => {
   return arr;
 }
 
+const merge = (leftSubArr, rightSubArr) => {
+  const mergedParts = [];
+  // Break out of loop if any one of the array gets empty
+  while(leftSubArr.length && rightSubArr.length){
+     // Pick the smaller among the smallest element of left and right sub arrays 
+    if(leftSubArr[0] < rightSubArr[0]){
+      mergedParts.push(leftSubArr.shift());
+    } else {
+      mergedParts.push(rightSubArr.shift());
+    }
+  }
+  // Concatenating the leftover elements
+  // (in case we didn't go through the entire left or right array)
+  return [...mergedParts, ...leftSubArr, ...rightSubArr];
+}
+
+const mergeSort = arr => {
+  const mid = Math.floor(arr.length / 2);
+  // Base case or terminating case
+  if(arr.length < 2){
+    return arr;
+  }
+  const left = arr.slice(0, mid);
+  const right = arr.slice(mid);
+  return merge(mergeSort(left), mergeSort(right));
+}
+
 const arr = [23, 41, 25, 54, 18, 14];
+console.log(mergeSort(arr));
 console.log(shellSort(arr));
 console.log(insertionSort(arr));
 console.log(bubbleSort(arr));
