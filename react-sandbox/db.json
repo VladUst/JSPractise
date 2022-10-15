@@ -1,0 +1,38 @@
+{
+  "posts": [
+    {
+      "id": 2,
+      "title": "json-server-2",
+      "body": "typicode"
+    },
+    {
+      "id": 3,
+      "title": "json-server-3",
+      "body": "typicode"
+    },
+    {
+      "id": 4,
+      "title": "json-server-4",
+      "body": "typicode"
+    },
+    {
+      "id": 5,
+      "title": "json-server-5",
+      "body": "typicode"
+    },
+    {
+      "title": "basd",
+      "body": "basd",
+      "id": 6
+    },
+    {
+      "title": "ffas",
+      "body": "dsad",
+      "id": 7
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
