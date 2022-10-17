@@ -1,10 +1,23 @@
 import './App.css';
 import { useAppDispatch, useAppSelector } from './hooks/redux';
 import { fetchUsers } from './store/reducers/ActionCreators';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import PostContainer from './components/PostContainer';
+import Navbar from './components/Navbar/Navbar';
+import { Main } from './components/Main/Main';
+import { Sidebar } from './components/Sidebar/Sidebar';
 
 function App() {
+  const links = [
+    {href:'/main', name:'Главная', icon:'home' },
+    {href:'/instruments', name:'Инструменты', icon:'build' },
+    {href:'/info', name:'Информация', icon:'info' },
+    {href:'/contacts', name:'Контакты', icon:'contacts' },
+  ];
+  const [sidebarActive, setSidebarActive] = useState(false);
+  const handleSidebar = () => {
+    setSidebarActive(sidebarActive => !sidebarActive);
+  }
   /* const dispatch = useAppDispatch();
   const {users, isLoading, error} = useAppSelector(state => state.userReducer);
   useEffect(()=>{
@@ -18,7 +31,11 @@ function App() {
         {/* {loader}
         {errorMessage}
         {content} */}
-        <PostContainer />
+        <Navbar handleSidebar={handleSidebar}/>
+        <Sidebar header='Меню' links={links} sidebarActive={sidebarActive} handleSidebar={handleSidebar}/>
+        <Main>
+          <PostContainer />
+        </Main>
       </div>
   );
 }

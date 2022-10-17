@@ -1,0 +1,39 @@
+.navbar{
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    background-color: #1a237e;
+}
+.burger-btn{
+    position: relative;
+    height: 30px;
+    width: 30px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+.burger-btn::before{
+    content:'';
+    position: absolute;
+    top: 0;
+    height: 4px;
+    width: 30px;
+    background-color: white;
+}
+.burger-btn span{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 30px;
+    background-color: white;
+}
+.burger-btn::after{
+    content:'';
+    position: absolute;
+    bottom: 0;
+    height: 4px;
+    width: 30px;
+    background-color: white;
+}

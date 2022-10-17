@@ -2,26 +2,21 @@
   "posts": [
     {
       "id": 2,
-      "title": "json-server-2",
-      "body": "typicode"
-    },
-    {
-      "id": 3,
-      "title": "json-server-3",
+      "title": "",
       "body": "typicode"
     },
     {
       "id": 4,
-      "title": "json-server-4",
+      "title": "dsda",
       "body": "typicode"
     },
     {
       "id": 5,
-      "title": "json-server-5",
+      "title": "",
       "body": "typicode"
     },
     {
-      "title": "basd",
+      "title": "",
       "body": "basd",
       "id": 6
     },
