@@ -7,7 +7,7 @@
     },
     {
       "id": 4,
-      "title": "dsda",
+      "title": "",
       "body": "typicode"
     },
     {
@@ -24,6 +24,11 @@
       "title": "ffas",
       "body": "dsad",
       "id": 7
+    },
+    {
+      "title": "",
+      "body": "dsfasf",
+      "id": 8
     }
   ],
   "comments": [],

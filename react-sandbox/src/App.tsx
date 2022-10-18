@@ -6,6 +6,7 @@ import PostContainer from './components/PostContainer';
 import Navbar from './components/Navbar/Navbar';
 import { Main } from './components/Main/Main';
 import { Sidebar } from './components/Sidebar/Sidebar';
+import { Modal } from './components/Modal/Modal';
 
 function App() {
   const links = [
@@ -15,8 +16,12 @@ function App() {
     {href:'/contacts', name:'Контакты', icon:'contacts' },
   ];
   const [sidebarActive, setSidebarActive] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
   const handleSidebar = () => {
     setSidebarActive(sidebarActive => !sidebarActive);
+  }
+  const handleModal = () => {
+    setModalActive(modalActive => !modalActive);
   }
   /* const dispatch = useAppDispatch();
   const {users, isLoading, error} = useAppSelector(state => state.userReducer);
@@ -31,8 +36,15 @@ function App() {
         {/* {loader}
         {errorMessage}
         {content} */}
-        <Navbar handleSidebar={handleSidebar}/>
+        <Navbar sidebarActive={sidebarActive} handleSidebar={handleSidebar} handleModal={handleModal}/>
         <Sidebar header='Меню' links={links} sidebarActive={sidebarActive} handleSidebar={handleSidebar}/>
+        <Modal handleModal={handleModal} modalActive={modalActive}>
+          <form>
+            <input type="text" placeholder='Ваше имя'/>
+            <input type="password" placeholder='Пароль'/>
+            <button type='submit'>Вход</button>
+          </form>
+        </Modal>
         <Main>
           <PostContainer />
         </Main>
