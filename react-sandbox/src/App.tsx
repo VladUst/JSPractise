@@ -2,19 +2,20 @@ import './App.css';
 import { useAppDispatch, useAppSelector } from './hooks/redux';
 import { fetchUsers } from './store/reducers/ActionCreators';
 import {useEffect, useState} from 'react';
-import PostContainer from './components/PostContainer';
 import Navbar from './components/Navbar/Navbar';
-import { Main } from './components/Main/Main';
+import { MainPage } from './pages/MainPage/MainPage';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { Modal } from './components/Modal/Modal';
+import AppRouter from './pages/AppRouter';
+
+const routes = [
+  {to:'/users', name:'Пользователи', icon:'home' },
+  {to:'/tools', name:'Инструменты', icon:'build' },
+  {to:'/info', name:'Информация', icon:'info' },
+  {to:'/contacts', name:'Контакты', icon:'contacts' },
+];
 
 function App() {
-  const links = [
-    {href:'/main', name:'Главная', icon:'home' },
-    {href:'/instruments', name:'Инструменты', icon:'build' },
-    {href:'/info', name:'Информация', icon:'info' },
-    {href:'/contacts', name:'Контакты', icon:'contacts' },
-  ];
   const [sidebarActive, setSidebarActive] = useState(false);
   const [modalActive, setModalActive] = useState(false);
   const handleSidebar = () => {
@@ -37,17 +38,17 @@ function App() {
         {errorMessage}
         {content} */}
         <Navbar sidebarActive={sidebarActive} handleSidebar={handleSidebar} handleModal={handleModal}/>
-        <Sidebar header='Меню' links={links} sidebarActive={sidebarActive} handleSidebar={handleSidebar}/>
-        <Modal handleModal={handleModal} modalActive={modalActive}>
-          <form>
-            <input type="text" placeholder='Ваше имя'/>
-            <input type="password" placeholder='Пароль'/>
-            <button type='submit'>Вход</button>
-          </form>
-        </Modal>
-        <Main>
-          <PostContainer />
-        </Main>
+        <div className='content-page'>
+          <Sidebar header='Меню' links={routes} sidebarActive={sidebarActive} handleSidebar={handleSidebar}/>
+          <Modal handleModal={handleModal} modalActive={modalActive}>
+            <form>
+              <input type="text" placeholder='Ваше имя'/>
+              <input type="password" placeholder='Пароль'/>
+              <button type='submit'>Вход</button>
+            </form>
+          </Modal>
+          <AppRouter/>
+        </div>
       </div>
   );
 }

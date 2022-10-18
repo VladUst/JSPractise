@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { ISidebarLink } from '../../models/ISidebarLink';
 import './Sidebar.css';
 
@@ -16,9 +17,9 @@ export const Sidebar:FC<SidebarProps> = ({header, links, sidebarActive, handleSi
                 <div className="sidebar__header">{header}</div>
                 <ul className='sidebar__list'>
                     {links.map(link => 
-                     <li className='sidebar__link' key={link.href}>
+                     <li className='sidebar__link' key={link.to}>
                         <i className="material-icons">{link.icon}</i>
-                        <a href={link.href}>{link.name}</a>
+                        <Link to={link.to}>{link.name}</Link>
                      </li>   
                     )}
                 </ul>

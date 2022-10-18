@@ -1,7 +1,8 @@
 import React from 'react';
-import { IPost } from '../models/IPost';
-import { postApi } from '../services/PostService';
-import PostItem from './PostItem';
+import { IPost } from '../../models/IPost';
+import { postApi } from '../../services/PostService';
+import List from '../../components/List/List';
+import PostItem from '../../components/Items/PostItem';
 
 const PostContainer = () => {
     // RTK query кэширует данные и не будет дублировать 2 одинаковых запроса даже если они исходят из разных компонентов
@@ -26,17 +27,17 @@ const PostContainer = () => {
     }
     const errorMessage = error ? <h1>Fetching error</h1> : null;
     const loader = isLoading ? <h1>Loading...</h1> : null;
-    const content = !(error || isLoading) ? posts?.map(post => <PostItem update={handleUpdate} remove={handleRemove} key={post.id} post={post}/>) : null;
+    const content = !(error || isLoading) 
+        ? <List items={posts} renderItem={(post: IPost) => <PostItem update={handleUpdate} remove={handleRemove} key={post.id} post={post}/>}/>
+        : null;
     //если данные нужно загрузить заново не из кэша, то необходимо вызвать refetch
     return (
         <div>
-            <div className="post__list">
-                <button onClick={handleCreate}>Создать пост</button>
-                <button onClick={refetch}>Перезагрузка</button>
-                {errorMessage}
-                {loader}
-                {content}
-            </div>
+            <button onClick={handleCreate}>Создать пост</button>
+            <button onClick={refetch}>Перезагрузка</button>
+            {errorMessage}
+            {loader}
+            {content}
         </div>
     );
 };
