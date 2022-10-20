@@ -1,0 +1,21 @@
+.cards-row{
+    display: flex;
+    justify-content: center;
+    min-height: 300px;
+    padding: 20px;
+    border: 10px solid rgb(177, 180, 237);
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 300px;
+    margin: 50px;
+    border: 5px solid rgb(6, 51, 118);
+    border-radius: 20px;
+    background-color: white;
+    cursor: grab;
+}
