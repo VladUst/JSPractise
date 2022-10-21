@@ -77,9 +77,45 @@ const mergeSort = arr => {
   return merge(mergeSort(left), mergeSort(right));
 }
 
+const partition = (arr, low, high) => {
+  let i = low;
+  let j = high + 1;
+  let pivot = arr[low];
+  while(true){
+    while(arr[++i] < pivot){
+      if(i === high) break;
+    }
+    while(pivot < arr[--j]){
+      if(j === low) break;
+    }
+    if(i >= j) break;
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  //поменять опорный с текущим
+  [arr[low], arr[j]] = [arr[j], arr[low]];
+  return j;
+}
+
+const sortDivider = (arr, low, high) => {
+  if(high <= low) {
+    return;
+  }
+  // разделить для последующей сортировки частей
+  let j = partition(arr, low, high);
+  sortDivider(arr, low, j - 1);
+  sortDivider(arr, j + 1, high);
+}
+
+const quickSort = (arr) => {
+  sortDivider(arr, 0, arr.length - 1);
+  return arr;
+}
+
 const arr = [23, 41, 25, 54, 18, 14];
 console.log(mergeSort(arr));
 console.log(shellSort(arr));
 console.log(insertionSort(arr));
 console.log(bubbleSort(arr));
 console.log(selectionSort(arr));
+quickSort(arr);
+console.log(arr);
