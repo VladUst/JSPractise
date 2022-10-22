@@ -47,3 +47,23 @@
     border-radius: 6px;
     cursor: grab;
 }
+
+.area{
+    width: 50%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    
+}
+
+.highlighted-area{
+    width: 50%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px dashed black;
+    font-size: 2rem;
+}
